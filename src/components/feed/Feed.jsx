@@ -1,18 +1,15 @@
-import React from 'react'
-import "./feed.css"
-import Share from '../share/Share'
-import Post from '../post/Post'
-import {Posts} from "../../dummyData"
+import "./feed.css";
+import Movie from "../movie/movie";
+import React from "react";
 
-export default function Feed() {
+export default function Feed(props) {
   return (
-    <div className='feed'>
+    <div className="feed">
       <div className="feedWrapper">
-        <Share/>
-        {Posts.map((p) =>(
-          <Post key = {p.id} post ={p}/>
+        {props.movies.map((m) => (
+          <Movie key={m.id} post={m} />
         ))}
       </div>
     </div>
-  )
+  );
 }

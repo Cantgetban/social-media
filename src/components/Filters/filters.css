@@ -1,0 +1,34 @@
+.filterTitle {
+  padding-top: 5%;
+}
+
+.filterInput {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  height: 30px;
+  margin-top: 2%;
+}
+
+.submitButton {
+  margin-top: 5%;
+  height: 30px;
+  width: 30%;
+  background-color: #1775ee;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.submitButt {
+  text-align: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+.f8 {
+  color: gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

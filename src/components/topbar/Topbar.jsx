@@ -1,40 +1,44 @@
-import React from "react"
-import "./topbar.css"
-import { Search, Person, Chat, Notifications } from "@mui/icons-material"
+import React from "react";
+import "./topbar.css";
+import { useNavigate } from "react-router-dom";
 
-export default function Topbar() {
-    return (
-        <div className="topbarContainer">
-            <div className="topbarLeft">
-                <span className="logo">NewSocial</span>
-            </div>
-            <div className="topbarCentre">
-                <div className="searchbar">
-                    <Search className="searchIcon"/>
-                    <input placeholder="Search for friends , Post or any video" className="searchInput" />
-                </div>
-            </div>
-            <div className="topbarRight">
-                <div className="topbarLinks">
-                    <span className="topbarLink">Home Page</span>
-                    <span className="topbarLink">Timeline</span>
-                </div>
-                <div className="topbarIcons">
-                    <div className="topbarIconItem">
-                        <Person />
-                        <span className="topbarIconBadge">1</span>
-                    </div>
-                    <div className="topbarIconItem">
-                        <Chat />
-                        <span className="topbarIconBadge">2</span>
-                    </div>
-                    <div className="topbarIconItem">
-                        <Notifications />
-                        <span className="topbarIconBadge">1</span>
-                    </div>
-                </div>
-                <img src="/assets/persons/1.jpg" alt="" className="topbarImg" />
-            </div>
+export default function Topbar(props) {
+  let navigate = useNavigate();
+  const routeChange = () => {
+    navigate("/.");
+  };
+  const logout = () => {
+    fetch("http://localhost:8080/api/users/logout", {
+      credentials: "include",
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then(() => {
+        routeChange();
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+  return (
+    <div className="topbarContainer">
+      <div className="topbarLeft">
+        <span className="logo">Social Movie</span>
+      </div>
+      <div className="topbarCentre">
+        <span className="logo">
+          Welcome {props.location.state.name}, share your favorite movies with
+          your friends!
+        </span>
+      </div>
+      <div className="topbarRight">
+        <div className="topbarLinks"></div>
+        <div className="topbarIcons" onClick={logout}>
+          Logout
         </div>
-    )
+      </div>
+    </div>
+  );
 }
