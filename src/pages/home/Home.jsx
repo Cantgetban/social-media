@@ -1,20 +1,21 @@
-import React from "react"
 import Topbar from "../../components/topbar/Topbar.jsx";
 import Sidebar from "../../components/sidebar/Sidebar.jsx";
 import Feed from "../../components/feed/Feed.jsx";
-import Rightbar from "../../components/rightbar/Rightbar.jsx";
-import "./Home.css"
-
+import "./Home.css";
+import React, { useState, useEffect } from "react";
+import { dummyMovies } from "../../dummyData.js";
+import { useLocation } from "react-router-dom";
 
 export default function Home() {
-    return (
-        <>
-        <Topbar/>
-        <div className="homeContainer">
-            <Sidebar/>
-            <Feed/>
-            <Rightbar/>
-        </div>
-        </>
-    )
+  const [movies, setMovies] = useState([]);
+  const location = useLocation();
+  return (
+    <>
+      <Topbar location={location} />
+      <div className="homeContainer">
+        <Sidebar setMovies={setMovies} />
+        <Feed movies={movies} />
+      </div>
+    </>
+  );
 }
